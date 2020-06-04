@@ -1,0 +1,80 @@
+{
+  "put": [
+    {
+      "id": "64bfceca-e1d8-415a-adc8-0b8228056048",
+      "name": "ObjectDetectionType",
+      "variables": {
+        "Detections": {
+          "kind": "categorical",
+          "value": {
+            "tsx": "$event.[object].String"
+          },
+          "filter": {
+            "tsx": "($event.[object].String) != null"
+          },
+          "interpolation": null,
+          "categories": [
+            {
+              "label": "Person",
+              "values": [
+                "Person"
+              ],
+              "annotations": {}
+            },
+            {
+              "label": "Vehicle",
+              "values": [
+                "Car"
+              ],
+              "annotations": {}
+            },
+            {
+              "label": "Bicycle",
+              "values": [
+                "Bicycle"
+              ],
+              "annotations": {}
+            },
+            {
+              "label": "Roadsign",
+              "values": [
+                "Roadsign"
+              ],
+              "annotations": {}
+            }
+          ],
+          "defaultCategory": {
+            "label": "None",
+            "annotations": {}
+          }
+        },
+        "Person": {
+          "kind": "numeric",
+          "value": {
+            "tsx": "$event.[count].Double"
+          },
+          "filter": {
+            "tsx": "$event.[object].String='Person'"
+          },
+          "interpolation": null,
+          "aggregation": {
+            "tsx": "max($value)"
+          }
+        },
+        "Vehicle": {
+          "kind": "numeric",
+          "value": {
+            "tsx": "$event.[count].Double"
+          },
+          "filter": {
+            "tsx": "$event.[object].String='Car'"
+          },
+          "interpolation": null,
+          "aggregation": {
+            "tsx": "max($value)"
+          }
+        }
+      }
+    }
+  ]
+}

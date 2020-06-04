@@ -1,0 +1,13 @@
+{
+  "put": [
+    {
+      "id": "a37e38ca-0fd3-4ccf-a661-ec195a090ad7",
+      "name": "Locations",
+      "source": {
+        "instanceFieldNames": [
+          "Address"
+        ]
+      }
+    }
+  ]
+}

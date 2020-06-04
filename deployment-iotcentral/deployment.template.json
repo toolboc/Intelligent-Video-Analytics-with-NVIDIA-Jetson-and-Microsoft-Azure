@@ -1,0 +1,288 @@
+{
+    "$schema-template": "1.0.0",
+    "modulesContent": {
+        "$edgeAgent": {
+            "properties.desired": {
+                "schemaVersion": "1.0",
+                "runtime": {
+                    "type": "docker",
+                    "settings": {
+                        "minDockerVersion": "v1.25",
+                        "loggingOptions": "",
+                        "registryCredentials": {
+                            "containerRegistry": {
+                                "username": "$CONTAINER_REGISTRY_USERNAME",
+                                "password": "$CONTAINER_REGISTRY_PASSWORD",
+                                "address": "$CONTAINER_REGISTRY_NAME"
+                            }
+                        }
+                    }
+                },
+                "systemModules": {
+                    "edgeAgent": {
+                        "type": "docker",
+                        "settings": {
+                            "image": "mcr.microsoft.com/azureiotedge-agent:1.0",
+                            "createOptions": {}
+                        }
+                    },
+                    "edgeHub": {
+                        "type": "docker",
+                        "status": "running",
+                        "restartPolicy": "always",
+                        "settings": {
+                            "image": "mcr.microsoft.com/azureiotedge-hub:1.0",
+                            "createOptions": {
+                                "HostConfig": {
+                                    "PortBindings": {
+                                        "5671/tcp": [
+                                            {
+                                                "HostPort": "5671"
+                                            }
+                                        ],
+                                        "8883/tcp": [
+                                            {
+                                                "HostPort": "8883"
+                                            }
+                                        ],
+                                        "443/tcp": [
+                                            {
+                                                "HostPort": "443"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "modules": {
+                    "deepstream": {
+                        "version": "1.0",
+                        "type": "docker",
+                        "status": "running",
+                        "restartPolicy": "always",
+                        "settings": {
+                            "image": "nvcr.io/nvidia/deepstream-l4t:5.0-dp-20.04-iot",
+                            "createOptions": {
+                                "Entrypoint": [
+                                    "/usr/bin/deepstream-test5-app",
+                                    "-c",
+                                    "DSConfig-CustomVisionAI.txt"
+                                ],
+                                "HostConfig": {
+                                    "runtime": "nvidia",
+                                    "NetworkMode": "host",
+                                    "Binds": [
+                                        "/data/misc/storage:/data/misc/storage",
+                                        "/tmp/argus_socket:/tmp/argus_socket",
+                                        "/tmp/.X11-unix/:/tmp/.X11-unix/"
+                                    ],
+                                    "IpcMode": "host"
+                                },
+                                "NetworkingConfig": {
+                                    "EndpointsConfig": {
+                                        "host": {}
+                                    }
+                                },
+                                "WorkingDir": "/data/misc/storage/Intelligent-Video-Analytics-with-NVIDIA-Jetson-and-Microsoft-Azure/services/DEEPSTREAM/configs"
+                            }
+                        },
+                        "env": {
+                            "DISPLAY": {
+                                "value": ":0"
+                            }
+                        }
+                    },
+                    "CameraTaggingModule": {
+                        "version": "1.0.3",
+                        "type": "docker",
+                        "status": "running",
+                        "restartPolicy": "always",
+                        "settings": {
+                            "image": "toolboc/camerataggingmodule:latest",
+                            "createOptions": {
+                                "ExposedPorts": {
+                                    "3000/tcp": {},
+                                    "3002/tcp": {},
+                                    "3003/tcp": {}
+                                },
+                                "HostConfig": {
+                                    "PortBindings": {
+                                        "3000/tcp": [
+                                            {
+                                                "HostPort": "3000"
+                                            }
+                                        ],
+                                        "3002/tcp": [
+                                            {
+                                                "HostPort": "3002"
+                                            }
+                                        ],
+                                        "3003/tcp": [
+                                            {
+                                                "HostPort": "3003"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "env": {
+                            "RTSP_IP": {
+                                "value": "nvidia:nvidia!@192.168.1.41"
+                            },
+                            "RTSP_PORT": {
+                                "value": "8081"
+                            },
+                            "RTSP_PATH": {
+                                "value": "videoMain"
+                            },
+                            "REACT_APP_SERVER_PORT": {
+                                "value": "3003"
+                            },
+                            "REACT_APP_WEB_SOCKET_PORT": {
+                                "value": "3002"
+                            },
+                            "REACT_APP_LOCAL_STORAGE_MODULE_NAME": {
+                                "value": "azureblobstorageoniotedge"
+                            },
+                            "REACT_APP_LOCAL_STORAGE_PORT": {
+                                "value": "11002"
+                            },
+                            "REACT_APP_LOCAL_STORAGE_ACCOUNT_NAME": {
+                                "value": "$LOCAL_STORAGE_ACCOUNT_NAME"
+                            },
+                            "REACT_APP_LOCAL_STORAGE_ACCOUNT_KEY": {
+                                "value": "$LOCAL_STORAGE_ACCOUNT_KEY"
+                            }
+                        }
+                    },
+                    "azureblobstorageoniotedge": {
+                        "version": "1.2",
+                        "type": "docker",
+                        "status": "running",
+                        "restartPolicy": "always",
+                        "settings": {
+                            "image": "mcr.microsoft.com/azure-blob-storage:latest",
+                            "createOptions": {
+                                "Env": [
+                                    "LOCAL_STORAGE_ACCOUNT_NAME=$LOCAL_STORAGE_ACCOUNT_NAME",
+                                    "LOCAL_STORAGE_ACCOUNT_KEY=$LOCAL_STORAGE_ACCOUNT_KEY"
+                                ],
+                                "HostConfig": {
+                                    "Binds": [
+                                        "/data/containerdata:/blobroot"
+                                    ],
+                                    "PortBindings": {
+                                        "11002/tcp": [
+                                            {
+                                                "HostPort": "11002"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "DeepStreamAnalytics": {
+                        "version": "1.0",
+                        "type": "docker",
+                        "status": "running",
+                        "restartPolicy": "always",
+                        "settings": {
+                            "image": "mcr.microsoft.com/azure-stream-analytics/azureiotedge:1.0.6-linux-arm32v7",
+                            "createOptions": {}
+                        },
+                        "env": {
+                            "PlanId": {
+                                "value": "stream-analytics-on-iot-edge"
+                            }
+                        }
+                    },
+                    "IoTCentralBridge": {
+                        "settings": {
+                            "image": "toolboc/iotcentralbridge:0.1.0-arm64v8",
+                            "createOptions": {
+                              "HostConfig": {
+                                  "PortBindings": {
+                                    "9010/tcp": [
+                                      {
+                                        "HostPort": "9014"
+                                      }
+                                    ]
+                                  },
+                                  "Binds": [
+                                      "/data/misc:/data/misc",
+                                      "/run/systemd:/run/systemd",
+                                      "/var/run/docker.sock:/var/run/docker.sock"
+                                  ],
+                                  "NetworkMode": "host"
+                                },
+                              "NetworkingConfig": {"EndpointsConfig": {"host":{}}}
+                            }
+                        },
+                        "type": "docker",
+                        "env": {
+                          "DEBUG_TELEMETRY": {
+                              "value": "1"
+                          },
+                          "DEBUG_ROUTING_DATA": {
+                              "value": "0"
+                          },
+                          "inferenceThrottle": {
+                              "value": 2000
+                          },
+                          "FORCE_HEALTHCHECK": {
+                              "value": "1"
+                          }
+                        },
+                        "status": "running",
+                        "restartPolicy": "always",
+                        "version": "1.0"
+                        
+                    }
+                }
+            }
+        },
+        "$edgeHub": {
+            "properties.desired": {
+                "schemaVersion": "1.0",
+                "routes": {
+                    "deepstreamToDeepStreamAnalytics": "FROM /messages/modules/deepstream/outputs/* INTO BrokeredEndpoint(\"/modules/DeepStreamAnalytics/inputs/DeepStreamInput\")",
+                    "DeepStreamAnalyticsToIoTHub": "FROM /messages/modules/DeepStreamAnalytics/outputs/SummarizedDetections INTO $upstream",
+                    "azureblobstorageoniotedgeToIoTHub": "FROM /messages/modules/azureblobstorageoniotedge/outputs/* INTO $upstream",
+                    "NVDSToIoTCBridge": "FROM /messages/modules/deepstream/outputs/* INTO BrokeredEndpoint(\"/modules/IoTCentralBridge/inputs/dsmessages\")",
+                    "filterToIoTHub": "FROM /messages/modules/IoTCentralBridge/* INTO $upstream"
+                },
+                "storeAndForwardConfiguration": {
+                    "timeToLiveSecs": 7200
+                }
+            }
+        },
+        "azureblobstorageoniotedge": {
+            "properties.desired": {
+                "deviceAutoDeleteProperties": {
+                    "deleteOn": false,
+                    "retainWhileUploading": true
+                },
+                "deviceToCloudUploadProperties": {
+                    "uploadOn": true,
+                    "uploadOrder": "OldestFirst",
+                    "cloudStorageConnectionString": "$CLOUD_STORAGE_CONNECTION_STRING",
+                    "storageContainersForUpload": {
+                        "$LOCAL_STORAGE_ACCOUNT_NAME": {
+                            "target": "$DESTINATION_STORAGE_NAME"
+                        }
+                    },
+                    "deleteAfterUpload": true
+                }
+            }
+        },
+        "DeepStreamAnalytics": {
+            "properties.desired": {
+                "ASAJobInfo": "https://acceleratededgestore.blob.core.windows.net/acceleratededgestreamanalytics/ASAEdgeJobs/1eaa79ec-5db9-483f-a979-384f1be2e5e0/83c9fc87-f23e-42b7-b1fe-320609cb60ed/ASAEdgeJobDefinition.zip?sv=2018-03-28&sr=b&sig=ciQ7IEaEi8nauouYP9CrP1w0unK10YuMkH32ScLB82s%3D&st=2020-05-09T20%3A24%3A22Z&se=2023-05-09T20%3A34%3A22Z&sp=r"
+            }
+        }
+    }
+}
