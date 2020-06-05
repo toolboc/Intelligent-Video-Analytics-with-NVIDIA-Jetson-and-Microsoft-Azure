@@ -47,8 +47,8 @@ cudadec-memtype=0
 
 [sink0]
 enable=1
-#Type - 1=FakeSink 2=EglSink 3=File
-type=5
+#Type - 1=FakeSink 2=EglSink 3=File 4=UDPSink 5=nvoverlaysink 
+type=2
 sync=0
 source-id=0
 gpu-id=0
@@ -114,7 +114,7 @@ nvbuf-memory-type=0
 [streammux]
 ##Boolean property to inform muxer that sources are live
 live-source=1
-batch-size=16
+batch-size=1
 ##time out in usec, to wait after the first buffer is available
 ##to push the batch even if the complete batch is not formed
 batched-push-timeout=40000
@@ -142,7 +142,7 @@ bbox-border-color7=0;1;0;1
 bbox-border-color8=0;1;1;0
 bbox-border-color15=0;1;1;1
 bbox-border-color16=1;0;0;0
-interval=2
+interval=0
 #Required by the app for SGIE, when used along with config-file property
 gie-unique-id=1
 config-file=config_infer_primary_yoloV3_tiny.txt

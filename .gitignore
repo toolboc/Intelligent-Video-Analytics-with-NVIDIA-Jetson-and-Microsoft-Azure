@@ -1,2 +1,9 @@
 config/
 .env
+services/CUSTOM_VISION_AI/model.onnx_b1_gpu0_fp32.engine
+services/YOLOV3/yolov3.cfg
+services/YOLOV3/yolov3-tiny.cfg
+services/YOLOV3/yolov3.weights
+services/YOLOV3/yolov3-tiny.weights
+services/YOLOV3/yolov3_model_b1_gpu0_fp16.engine
+services/YOLOV3/yolov3_tiny_model_b1_gpu0_fp16.engine
