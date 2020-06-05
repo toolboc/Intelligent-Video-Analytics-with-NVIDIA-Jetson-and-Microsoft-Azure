@@ -127,7 +127,7 @@ attach-sys-ts-as-ntp=1
 # the infer config file.
 
 [primary-gie]
-enable=0
+enable=1
 model-engine-file=../../CUSTOM_VISION_AI/model.onnx_b1_gpu0_fp32.engine
 #Required to display the PGIE labels, should be added even when using config-file
 #property
