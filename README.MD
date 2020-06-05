@@ -4,7 +4,7 @@ A repository demonstrating an end-to-end architecture for Intelligent Video Anal
 
 ## Introduction
 
-[![5 minute teaser](https://img.youtube.com/vi/-DWrxUITSbc/0.jpg)](
+[![5 minute teaser](./assets/5minTeaser.PNG)](
 https://www.youtube.com/watch?v=-DWrxUITSbc)
 
 
@@ -23,7 +23,7 @@ For more details on how this all works under the hood, check out this episode of
 [![IoT Show Episode](https://img.youtube.com/vi/EiB1j0FZjgU/0.jpg)](
 https://www.youtube.com/watch?v=EiB1j0FZjgU)
 
-## Section 1 : Prerequisites
+## Prerequisites
 
 Hardware:
 * [NVIDIA Jetson Embedded Device](https://www.nvidia.com/en-us/autonomous-machines/jetson-store/) running [JetPack 4.4](https://developer.nvidia.com/embedded/jetpack)
@@ -41,3 +41,41 @@ Development Environment:
 
 Cloud Services:
 - An Active [Microsoft Azure Subscription](https://azure.microsoft.com/en-us/get-started?WT.mc_id=julyot-iva-pdecarlo)
+
+## Section 1 : Introduction to NVIDIA DeepStream
+
+The [NVIDIA DeepStream SDK](https://developer.nvidia.com/deepstream-sdk) delivers a complete streaming analytics toolkit for AI based video and image understanding and multi-sensor processing. DeepStream SDK features hardware-accelerated building blocks, called plugins that bring deep neural networks and other complex processing tasks into a stream processing pipeline.
+
+The deepstream offering contains the DeepStream SDK which include an app (deepstream-test5) that is configurable to handle multiple streams and multiple networks for inference. The app can be connected to the [Azure IoT Edge runtime](https://docs.microsoft.com/en-us/azure/iot-edge/about-iot-edg?WT.mc_id=julyot-iva-pdecarlo) to send messages to a configured [Azure IoT Hub](https://docs.microsoft.com/en-us/azure/iot-hub/?WT.mc_id=julyot-iva-pdecarlo). 
+
+The [DeepStream SDK is offered in the Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/nvidia.deepstream-iot?WT.mc_id=julyot-iva-pdecarlo) as an [IoT Edge Module](https://docs.microsoft.com/en-us/azure/iot-edge/quickstart-linux?WT.mc_id=julyot-iva-pdecarlo).  We will employ this mechanism to configure and run a DeepStream workload on an NVIDIA embedded device.
+
+Before continuing, it is highly suggested to familiarize with the [DeepStream SDK Documentation](http://aka.ms/deepstreamdevguide), as it will provide you with the details on how to customize the Intelligent Video Analytics solution to your needs.
+
+We cover pretty much everything you need to know in this 90 minute livestream titled "[Getting Started with NVIDIA Jetson: Object Detection](https://www.twitch.tv/videos/633625822)".  We highly recommend that you give a watch before proceeding to the next section.
+
+[![Getting Started with NVIDIA Jetson: Object Detection](./assets/LiveStream1.PNG)](
+https://www.twitch.tv/videos/633625822)
+
+## Section 2 : Configure and Deploy "Intelligent Video Analytics" to IoT Edge Runtime on NVIDIA Jetson
+
+In this section we will install and configure the IoT Edge Runtime on an NVIDIA Jetson Device.  This will require that we deploy a collection of Azure Services to support the modules that are defined in the associated [IoT Edge Deployment for IoT Hub](https://github.com/toolboc/Intelligent-Video-Analytics-with-NVIDIA-Jetson-and-Microsoft-Azure/blob/master/deployment-iothub/deployment.template.json).
+
+If you take a close look at the deployment, you will notice that it includes the following modules:
+
+| Module                    | Purpose                                                                                                                         | Backing Azure Service                                                    |
+|---------------------------|---------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| edgeAgent                 | System Module used by IoT Edge to deploy and ensure uptime of modules defined in device deployment                              | [Azure IoT Hub](https://docs.microsoft.com/en-us/azure/iot-hub/?WT.mc_id=julyot-iva-pdecarlo)(Authorization and for obtaining deployment configuration) |
+| edgeHub                   | System Module responsible for inter-module communication and message back to Azure IoT Hub                                       | [Azure IoT Hub](https://docs.microsoft.com/en-us/azure/iot-hub/?WT.mc_id=julyot-iva-pdecarlo) (Ingestion of Device to Cloud Telemetry)                   |
+| NVIDIADeepStreamSDK       | Custom Module which runs DeepStream workload, output is forwarded to DeepStreamAnalytics Module for summarization               | N/A                                                                      |
+| CameraTaggingModule       | Custom Module for obtaining images from available RTSP sources for use in Training Custom Object Detection Models               | [CustomVision.AI](https://www.customvision.ai/?WT.mc_id=julyot-iva-pdecarlo) for exporting of captured images                         |
+| azureblobstorageoniotedge | Custom Module for providing replication of data to a backing Azure Storage Account                                              | [Azure Storage Account](https://docs.microsoft.com/en-us/azure/storage/?WT.mc_id=julyot-iva-pdecarlo) for replication and long-term storage of captured images   |
+| DeepStreamAnalytics       | Custom Module that employs "Stream Analytics on IoT Edge" Module to Summarize Object Detection Results from NVIDIADeepStreamSDK | [Azure Stream Analytics on Edge](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-edge?WT.mc_id=julyot-iva-pdecarlo) Job defined and served from Azure                                   |
+
+In this section, we will only need to deploy an [Azure IoT Hub](https://docs.microsoft.com/en-us/azure/iot-hub/?WT.mc_id=julyot-iva-pdecarlo) and [Azure Storage Account](https://docs.microsoft.com/en-us/azure/storage/?WT.mc_id=julyot-iva-pdecarlo). If you are curious about the pricing involved for these services can be viewed here:
+
+* [IoT Hub Pricing](https://azure.microsoft.com/en-us/pricing/details/iot-hub/?WT.mc_id=julyot-iva-pdecarlo)
+* [Azure Storage Account](https://github.com/toolboc/Intelligent-Video-Analytics-with-NVIDIA-Jetson-and-Microsoft-Azure?WT.mc_id=julyot-iva-pdecarlo)
+* [Azure Stream Analytics on Edge Pricing](https://azure.microsoft.com/en-us/pricing/details/stream-analytics/?WT.mc_id=julyot-iva-pdecarlo) (Technically, even though we are using a job that is not contained in the end-users subscription, billing does occur per device that runs the job)
+
+The additional services, [CustomVision.AI](https://www.customvision.ai/?WT.mc_id=julyot-iva-pdecarlo) and [Azure Stream Analytics on Edge](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-edge?WT.mc_id=julyot-iva-pdecarlo) will be addressed in upcoming sections and will not be needed at this time.  
