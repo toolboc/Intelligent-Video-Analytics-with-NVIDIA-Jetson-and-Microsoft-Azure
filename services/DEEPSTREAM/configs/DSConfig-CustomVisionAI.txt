@@ -45,8 +45,8 @@ cudadec-memtype=0
 
 [sink0]
 enable=1
-#Type - 1=FakeSink 2=EglSink 3=File
-type=5
+#Type - 1=FakeSink 2=EglSink 3=File 4=UDPSink 5=nvoverlaysink
+type=2
 sync=0
 source-id=0
 gpu-id=0
@@ -112,7 +112,7 @@ nvbuf-memory-type=0
 [streammux]
 ##Boolean property to inform muxer that sources are live
 live-source=1
-batch-size=16
+batch-size=1
 ##time out in usec, to wait after the first buffer is available
 ##to push the batch even if the complete batch is not formed
 batched-push-timeout=40000
@@ -127,11 +127,11 @@ attach-sys-ts-as-ntp=1
 # the infer config file.
 
 [primary-gie]
-enable=1
-model-engine-file=/data/misc/storage/ONNXSetup/detector/model.onnx_b4_gpu0_fp32.engine
+enable=0
+model-engine-file=../../CUSTOM_VISION_AI/model.onnx_b1_gpu0_fp32.engine
 #Required to display the PGIE labels, should be added even when using config-file
 #property
-batch-size=4
+batch-size=1
 #Required by the app for OSD, not a plugin property
 bbox-border-color0=1;0;0;1
 bbox-border-color1=0;1;1;1
