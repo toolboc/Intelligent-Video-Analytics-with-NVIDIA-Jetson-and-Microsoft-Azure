@@ -67,7 +67,7 @@ If you take a close look at the deployment, you will notice that it includes the
 
 | Module                    | Purpose                                                                                                                         | Backing Azure Service                                                    |
 |---------------------------|---------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
-| edgeAgent                 | System Module used by IoT Edge to deploy and ensure uptime of modules defined in device deployment                              | [Azure IoT Hub](https://docs.microsoft.com/en-us/azure/iot-hub/?WT.mc_id=julyot-iva-pdecarlo)(Authorization and for obtaining deployment configuration) |
+| edgeAgent                 | System Module used by IoT Edge to deploy and ensure uptime of modules defined in device deployment                              | [Azure IoT Hub](https://docs.microsoft.com/en-us/azure/iot-hub/?WT.mc_id=julyot-iva-pdecarlo) (Authorization and for obtaining deployment configuration) |
 | edgeHub                   | System Module responsible for inter-module communication and message back to Azure IoT Hub                                       | [Azure IoT Hub](https://docs.microsoft.com/en-us/azure/iot-hub/?WT.mc_id=julyot-iva-pdecarlo) (Ingestion of Device to Cloud Telemetry)                   |
 | NVIDIADeepStreamSDK       | Custom Module which runs DeepStream workload, output is forwarded to DeepStreamAnalytics Module for summarization               | Telemetry is routed to DeepStreamAnalytics module (see: [IoT Edge - Declare Routes](https://docs.microsoft.com/en-us/azure/iot-edge/module-composition#declare-routes?WT.mc_id=julyot-iva-pdecarlo)) where it is filtered and forwarded to an [Azure IoT Hub](https://docs.microsoft.com/en-us/azure/iot-hub/?WT.mc_id=julyot-iva-pdecarlo)                                                                     |
 | CameraTaggingModule       | Custom Module for obtaining images from available RTSP sources for use in Training Custom Object Detection Models               | [CustomVision.AI](https://www.customvision.ai/?WT.mc_id=julyot-iva-pdecarlo) for exporting of captured images for use in training Custom Object Detection model(s)                        |
@@ -378,13 +378,15 @@ mcr.microsoft.com/azure-stream-analytics/azureiotedge   1.0.6-linux-arm32v7   bb
 mcr.microsoft.com/azure-blob-storage                    latest                76f2e7849a91        11 months ago       203MB
 ```
 
+When you are certain that the deployment has completed, it is now possible to modify the solution to your needs.  This will be explained in the next section.
+
 ### Section 2.6 : Customizing the Sample Deployment 
 
 This section is a bit open-ended as it will depend on how you intend to process video input on your Jetson Device.  
 
-Before making any modifications, it is highly advised to consult the [DeepStream Documentation for Configuration Groups](http://aka.ms/DeepStreamDevGuide) and remember that everything should be tracked using .git so recovery is always possible.  
+Before making any modifications, it is highly advised to consult the [DeepStream Documentation for Configuration Groups](http://aka.ms/DeepStreamDevGuide) and remember that everything should be tracked using 'git' so recovery is always possible.  
 
-The un-modified sample deployment references a DeepStream configuration located on your Jetson Device at `/data/misc/storage/Intelligent-Video-Analytics-with-NVIDIA-Jetson-and-Microsoft-Azure/services/DEEPSTREAM/configs`.  Within this directory there will be some additional examples:
+The un-modified sample deployment references a DeepStream configuration located on your Jetson Device at `/data/misc/storage/Intelligent-Video-Analytics-with-NVIDIA-Jetson-and-Microsoft-Azure/services/DEEPSTREAM/configs`.  Within this directory there will be some additional example DeepStream Configurations:
 
 | DeepStream Sample Configuration Name | Description                                                                                                                                                                                                |
 |--------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -392,7 +394,7 @@ The un-modified sample deployment references a DeepStream configuration located 
 | DSConfig-YoloV3.txt                  | Employs an example object detection model based on [YoloV3](https://pjreddie.com/darknet/yolo/)                                                                                                            |
 | DSConfig-YoloV3Tiny.txt              | Employs an example object detection model based on [YoloV3Tiny](https://pjreddie.com/darknet/yolo)   
 
-Each of these example are configured by default to process a single video input from a [publicly available RTSP stream of Big Buck Bunny](https://www.wowza.com/html/mobile.html).  We do this partially because it is the ONLY reliable and publicly accessible RTSP stream on the entire internet and to make it super easy to modify the existing example to point to a custom RTSP endpoint for say, an IP capable security camera.  
+Each of these examples are configured by default to process a single video input from a [publicly available RTSP stream of Big Buck Bunny](https://www.wowza.com/html/mobile.html).  We do this partially because it is the ONLY reliable and publicly accessible RTSP stream on the entire internet and to make it super easy to modify the existing example to point to a custom RTSP endpoint for say, an IP capable security camera.  
 
 To change the active DeepStream configuration in your deployment, you can modify the `deployment.template.json` to specify a different configuration file within the `ENTRYPOINT` specification for the `NVIDIADeepStreamSDK` module, then repeat the steps in section 2.5 to regenerate and apply the modified deployment. Note that using the YoloV3* configurations will require that you bring in some additional dependencies which will be discussed in Section 3.  
 
@@ -418,8 +420,19 @@ OR
 docker logs -f NVIDIADeepStreamSDK
 ```
 
-Once you have modified the configuration to obtain video sources from your desired inputs, we will now be ready to look into how to create and deploy Custom Object Detection Model from CustomVision.AI and explore the usage of academic grade models using the YOLOV3* configurations.
+For each of your input sources, you will want to ensure that each of them is provided an entry in msgconv_config.txt by modifying with:
+```
+nano /data/misc/storage/Intelligent-Video-Analytics-with-NVIDIA-Jetson-and-Microsoft-Azure/services/DEEPSTREAM/configs/msgconv_config.txt
+```
+
+This file is used to generate telemetry to the Azure IoT Hub and to specify which video input / camera that a given object detection originated from.
+
+One last note, if you are modifying the DeepStream configuration to use multiple video sources,you will want to modify the `[streammux]` `batch-size` property to equal the number of video sources you are using for optimal performance.  For example, if you have modified the DeepStream Configuration to use four input RTSP streams, you will want to set `[streammux]` `batch-size` = 4, in your modified DeepStream configuration.
+
+Once you have modified the configuration to obtain video sources from your desired inputs, we will now be ready to look into how to create and deploy Custom Object Detection Model from CustomVision.AI and explore the usage of academic grade models using the YOLOV3* configurations. 
 
 ## Section 3 : Customizing the Object Detection Model used for DeepStream Inference
 
-TBD
+At this point, you should have deployed a custom DeepStream Configuration that is able to consume input from your desired sources.  We will now look into ways to customize the object detection model that is employed in that configuration to enable to you to create a fully customized Intelligent Video Analytics Pipeline.
+
+This section will assume that you might be brand new to the world of Computer Vision / Artificial Intelligence and that you are interested in the end goal of using a Custom Object Detection model that detects objects that you train it to detect, or that you wish to employ an academic-grade object detection model that has been trained on [80 common objects](./services/YOLOV3/labels.txt).
