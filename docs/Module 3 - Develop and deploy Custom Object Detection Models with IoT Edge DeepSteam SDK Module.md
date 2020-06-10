@@ -1,0 +1,5 @@
+## Module 3 : Develop and deploy Custom Object Detection Models with IoT Edge DeepSteam SDK Module
+
+At this point, you should have deployed a custom DeepStream Configuration that is able to consume input from your desired sources.  We will now look into ways to customize the object detection model that is employed in that configuration to enable to you to create a fully customized Intelligent Video Analytics Pipeline.
+
+This section will assume that you might be brand new to the world of Computer Vision / Artificial Intelligence and that you are interested in the end goal of using a Custom Object Detection model that detects objects that you train it to detect.  If you are interested in obtaining accurate detection of common objects immediatelly, without the need to train up a custom model, we will also demonstrate how to employ an academic-grade pre-trained object detection model [(YoloV3)](https://pjreddie.com/darknet/yolo/) which has been trained on [80 common objects](../services/YOLOV3/labels.txt).
