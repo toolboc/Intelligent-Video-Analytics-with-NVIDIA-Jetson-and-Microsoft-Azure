@@ -84,7 +84,7 @@ is-classifier=0
 cluster-mode=2
 maintain-aspect-ratio=1
 parse-bbox-func-name=NvDsInferParseCustomYoloV3
-custom-lib-path=../YoloParser/CustomYolo_DeepStream_5.0_Jetpack4.4/libnvdsinfer_custom_impl_Yolo.so
+custom-lib-path=../YoloParser/CustomYolo_DeepStream5.0_Jetpack4.4/libnvdsinfer_custom_impl_Yolo.so
 engine-create-func-name=NvDsInferYoloCudaEngineGet
 
 [class-attrs-all]

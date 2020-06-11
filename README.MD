@@ -7,6 +7,8 @@ This project contains a collection of self-paced learning modules which guide th
 * [Module 1 - Introduction to NVIDIA DeepStream](./docs/Module%201%20-%20Introduction%20to%20NVIDIA%20DeepStream.md)
 * [Module 2 - Configure and Deploy "Intelligent Video Analytics" to IoT Edge Runtime on NVIDIA Jetson](./docs/Module%202%20-%20Configure%20and%20Deploy%20Intelligent%20Video%20Analytics%20to%20IoT%20Edge%20Runtime%20on%20NVIDIA%20Jetson.md)
 * [Module 3 - Develop and deploy Custom Object Detection Models with IoT Edge DeepSteam SDK Module](./docs/Module%203%20-%20Develop%20and%20deploy%20Custom%20Object%20Detection%20Models%20with%20IoT%20Edge%20DeepSteam%20SDK%20Module.md)
+* [Module 4 - Filtering Telemetry with Azure Stream Analytics at the Edge and Modeling with Azure Time Series Insights](./docs/Module%204%20-%20Filtering%20Telemetry%20with%20Azure%20Stream%20Analytics%20at%20the%20Edge%20and%20Modeling%20with%20Azure%20Time%20Series%20Insights.md)
+* [Module 5 - Visualizing Object Detection Data in Near Real-Time with PowerBI](./docs/Module%205%20-%20Visualizing%20Object%20Detection%20Data%20in%20Near%20Real-Time%20with%20PowerBI.md)
 
 ## Overview
 

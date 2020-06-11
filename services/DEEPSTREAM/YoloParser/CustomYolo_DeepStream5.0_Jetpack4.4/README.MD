@@ -14,5 +14,5 @@
     ```
 5. Copy the resulting shared object to this directory with:
     ```
-    cp /opt/nvidia/deepstream/deepstream-5.0/sources/objectDetector_Yolo/nvdsinfer_custom_impl_Yolo/libnvdsinfer_custom_impl_Yolo.so /data/misc/storage/Intelligent-Video-Analytics-with-NVIDIA-Jetson-and-Microsoft-Azure/services/DEEPSTREAM/YoloParser/CustomYolo_DeepStream_5.0_Jetpack4.4
+    cp /opt/nvidia/deepstream/deepstream-5.0/sources/objectDetector_Yolo/nvdsinfer_custom_impl_Yolo/libnvdsinfer_custom_impl_Yolo.so /data/misc/storage/Intelligent-Video-Analytics-with-NVIDIA-Jetson-and-Microsoft-Azure/services/DEEPSTREAM/YoloParser/CustomYolo_DeepStream5.0_Jetpack4.4
     ```
