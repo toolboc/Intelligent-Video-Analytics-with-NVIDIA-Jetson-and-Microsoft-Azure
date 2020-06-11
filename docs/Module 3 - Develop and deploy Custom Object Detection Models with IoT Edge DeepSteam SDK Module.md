@@ -133,6 +133,8 @@ python
 
 The [Intelligent Video Analytics deployment ships with a Camera Tagging Module](https://github.com/toolboc/Intelligent-Video-Analytics-with-NVIDIA-Jetson-and-Microsoft-Azure/blob/master/deployment-iothub/deployment.template.json#L97) that can assist in gathering Training Samples for use with CustomVision.AI.
 
+![CameraTaggingModule](../assets/CameraTaggingModule.PNG)
+
 The [Azure IoT Edge Camera Tagging Module](https://github.com/microsoft/vision-ai-developer-kit/tree/master/samples/official/camera-tagging) can assist by providing automated methods for capturing and uploading training samples from accessible RTSP streams in open and air-gapped networks, with ability to upload samples directly to CustomVision.AI or employ the [`azureblobstorageoniotedge` module](https://github.com/toolboc/Intelligent-Video-Analytics-with-NVIDIA-Jetson-and-Microsoft-Azure/blob/master/deployment-iothub/deployment.template.json#L161) to store and forward to an Azure Storage container.  This enables solution builders to produce varied and precise AI models using data gathered from a module running on any IoT Edge capable device.
 
 For detailed instructions on how to use the features of the 
