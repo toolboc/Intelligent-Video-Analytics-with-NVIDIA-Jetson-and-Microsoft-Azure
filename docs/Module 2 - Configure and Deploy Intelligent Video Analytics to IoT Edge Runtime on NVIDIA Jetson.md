@@ -80,7 +80,7 @@ After installation, you will receive the following message indicating the need t
 ===============================================================================
 ```
 
-### Module 2.2 : Provision the IoT Edge Runtime on the Jetson Nano Device
+### Module 2.2 : Provision the IoT Edge Runtime on the Jetson Device
 
 In this section, we will manually provision our Jetson hardware as an IoT Edge device.  To accomplish this, we will need to deploy an active IoT Hub which we will use to register a new IoT Edge device and from there obtain a device connection string that we will allow us to securely authenticate to the IoT Hub instance. 
 
