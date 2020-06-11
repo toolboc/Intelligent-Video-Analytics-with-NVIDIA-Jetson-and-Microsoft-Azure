@@ -129,7 +129,16 @@ model.zip
 python
 ```
 
-### Module 3.3 : The CustomVisionAI YoloParser 
+### Module 3.3 : Using the Deployed CameraTaggingModule to gather Training Samples
+
+The [Intelligent Video Analytics deployment ships with a Camera Tagging Module](https://github.com/toolboc/Intelligent-Video-Analytics-with-NVIDIA-Jetson-and-Microsoft-Azure/blob/master/deployment-iothub/deployment.template.json#L97) that can assist in gathering Training Samples for use with CustomVision.AI.
+
+The [Azure IoT Edge Camera Tagging Module](https://github.com/microsoft/vision-ai-developer-kit/tree/master/samples/official/camera-tagging) can assist by providing automated methods for capturing and uploading training samples from accessible RTSP streams in open and air-gapped networks, with ability to upload samples directly to CustomVision.AI or employ the [`azureblobstorageoniotedge` module](https://github.com/toolboc/Intelligent-Video-Analytics-with-NVIDIA-Jetson-and-Microsoft-Azure/blob/master/deployment-iothub/deployment.template.json#L161) to store and forward to an Azure Storage container.  This enables solution builders to produce varied and precise AI models using data gathered from a module running on any IoT Edge capable device.
+
+For detailed instructions on how to use the features of the 
+CameraTaggingModule, consult this [article](https://dev.to/azure/introduction-to-the-azure-iot-edge-camera-tagging-module-di8).
+
+### Module 3.4 : The CustomVisionAI YoloParser 
 
 The onnx formatted model that we exported from CustomVision.AI is a [YoloV2Tiny](https://pjreddie.com/darknet/yolov2/) based object detector.  [Yolo](https://pjreddie.com/darknet/yolo/) is an umbrella naming convention of object detectors created by [Joseph Redmon](https://pjreddie.com/).  The "Tiny" denotes that we are using a version of Yolov2* which targets resource constrained devices.  The "Tiny" version favors speed in exchange for the accuracy present in it's "non-Tiny" variant.  This type of model is suitable for the Jetson Nano, but could be exceeded on more powerful hardware like the Jetson Xavier family of devices.  
 
@@ -142,9 +151,9 @@ The CustomVisionAI YoloParser can be found at:
 
 Within this folder, you will find the pre-built Custom Yolo Parser itself, `libnvdsinfer_custom_impl_Yolo.so`, and a Makefile along with instructions on how to build the parser from source.  This source and instructions correspond to building the parser against DeepStream5.0 running on JetPack 4.4 (The Jetson device OS / libraries version). If you intend to run on against different versions of either, you will likely need to recompile this from source.
 
-You may be interested in modifying the [`nvdsparsebbox_Yolo.cpp`](../services/DEEPSTREAM/YoloParser/CustomVision_DeepStream5.0_JetPack4.4/nvdsparsebbox_Yolo.cpp).  For example, you can uncomment lines 432-437 to output the confidence of detected objects.  You can also modify the Non-Maximal Suppression Threshold  (`kNMS_THRESH`) and Confidence Threshold (`kPROB_THRESH`) to tune your model for better accuracy.  These parameters are explained in detail in the following [article](https://towardsdatascience.com/you-only-look-once-yolo-implementing-yolo-in-less-than-30-lines-of-python-code-97fb9835bfd2)
+You may be interested in modifying the [`nvdsparsebbox_Yolo.cpp`](../services/DEEPSTREAM/YoloParser/CustomVision_DeepStream5.0_JetPack4.4/nvdsparsebbox_Yolo.cpp).  For example, you can uncomment lines 432-437 to output the confidence of detected objects.  You can also modify the Non-Maximal Suppression Threshold  (`kNMS_THRESH`) and Confidence Threshold (`kPROB_THRESH`) to tune your model for better accuracy.  These parameters are explained in detail in the following [article](https://towardsdatascience.com/you-only-look-once-yolo-implementing-yolo-in-less-than-30-lines-of-python-code-97fb9835bfd2).
 
-### Module 3.4 : The CustomYolo YoloParser
+### Module 3.5 : The CustomYolo YoloParser
 
 DeepStream 5.0 ships with a parser capable of working with the stock YoloV3 weights and configurations.  For details on how this parser works, you can consult the DeepStream 4.0 documentation for ["Custom YOLO Model in the DeepStream YOLO App"](https://docs.nvidia.com/metropolis/deepstream/4.0/Custom_YOLO_Model_in_the_DeepStream_YOLO_App.pdf).
 
@@ -160,9 +169,9 @@ You may be interested in modifying in  `/opt/nvidia/deepstream/deepstream-5.0/so
 static const int NUM_CLASSES_YOLO = 80
 ```
 
-You can also modify the Non-Maximal Suppression Threshold  (`nms-iou-threshold`) and Confidence Threshold (`pre-cluster-threshold`) to tune your model for better accuracy, these are available in [config_infer_primary_yoloV3_tiny.txt](https://github.com/toolboc/Intelligent-Video-Analytics-with-NVIDIA-Jetson-and-Microsoft-Azure/blob/master/services/DEEPSTREAM/configs/config_infer_primary_yoloV3_tiny.txt#L91) and [config_infer_primary_yoloV3.txt](https://github.com/toolboc/Intelligent-Video-Analytics-with-NVIDIA-Jetson-and-Microsoft-Azure/blob/master/services/DEEPSTREAM/configs/config_infer_primary_yoloV3.txt).  These parameters are explained in detail in the following [article](https://towardsdatascience.com/you-only-look-once-yolo-implementing-yolo-in-less-than-30-lines-of-python-code-97fb9835bfd2)
+You can also modify the Non-Maximal Suppression Threshold  (`nms-iou-threshold`) and Confidence Threshold (`pre-cluster-threshold`) to tune your model for better accuracy, these are available in [config_infer_primary_yoloV3_tiny.txt](https://github.com/toolboc/Intelligent-Video-Analytics-with-NVIDIA-Jetson-and-Microsoft-Azure/blob/master/services/DEEPSTREAM/configs/config_infer_primary_yoloV3_tiny.txt#L91) and [config_infer_primary_yoloV3.txt](https://github.com/toolboc/Intelligent-Video-Analytics-with-NVIDIA-Jetson-and-Microsoft-Azure/blob/master/services/DEEPSTREAM/configs/config_infer_primary_yoloV3.txt).  These parameters are explained in detail in the following [article](https://towardsdatascience.com/you-only-look-once-yolo-implementing-yolo-in-less-than-30-lines-of-python-code-97fb9835bfd2).
 
-### Module 3.5 : Using a YoloV3* Object Detection Model with NVIDIA DeepStream
+### Module 3.6 : Using a YoloV3* Object Detection Model with NVIDIA DeepStream
 
 This section will walk through steps to employ YoloV3 or YoloV3Tiny in a DeepStream configuration.
 
