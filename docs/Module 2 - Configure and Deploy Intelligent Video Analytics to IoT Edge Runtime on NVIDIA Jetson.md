@@ -21,6 +21,11 @@ In this section, we will only need to deploy an [Azure IoT Hub](https://docs.mic
 
 The additional services, [CustomVision.AI](https://www.customvision.ai/?WT.mc_id=julyot-iva-pdecarlo) and [Azure Stream Analytics on Edge](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-edge?WT.mc_id=julyot-iva-pdecarlo), will be addressed in upcoming sections and will not be needed at this time.  
 
+If you wish to follow along with the steps in this module, we have recorded a livestream presentation titled "[Configure and Deploy "Intelligent Video Analytics" to IoT Edge Runtime on NVIDIA Jetson](https://www.youtube.com/watch?v=RKwwP4XsZdw)" that walks through the steps below in great detail.
+
+[![Configure and Deploy "Intelligent Video Analytics" to IoT Edge Runtime on NVIDIA Jetson](../assets/LiveStream2.PNG)](https://www.youtube.com/watch?v=RKwwP4XsZdw)
+
+
 ### Module 2.1 : Install IoT Edge onto the Jetson  Device
 
 Before we install IoT Edge, we need to install a few utilities onto the Nvidia Jetson device with:
@@ -238,6 +243,12 @@ Produce a value for `LOCAL_STORAGE_ACCOUNT_KEY` by visiting [GeneratePlus](https
 
 `DESTINATION_STORAGE_NAME` is supplied from an assumed-to-exist blob storage container in the Azure Cloud.  You can create this container by performing the following steps:
 
+Navigate to the Azure Marketplace and search for 'blob', then select Storage Account - blob, file, table, queue
+
+![Storage Marketplace](../assets/AzureStorageMarkeplace.PNG)
+
+Create the Storage Account using settings similar to below (note: the Storage account name must be globally unique)
+
 ![Storage Overview](../assets/AzureStorageOverview.PNG)
 
 Create a new storage container named "camerataggingmodulecloud" as shown below (the name is important as it matches the value in the .env):
@@ -275,7 +286,16 @@ Select the "Azure IoT Edge: Set Default Target Platform for Edge Solution" task 
 
 Note: If you do not see any results when searching for the task above, ensure that you have installed the [Azure IoT Tools Extension](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-tools).
 
-Bring up the Command Pallette again with (CTRL+SHIFT+P), this time search for:
+
+Next, we will need to set a  `DISPLAY` environment variable for the NVIDIADeepStreamSDK module to enable communication to the X11 server running on the host (i.e. allow us to run a GUI based application form a container). In most instances, the `DISPLAY` environment variable will be set to :1, this corresponds to the referenced physical display that may or may not be attached to the host. To obtain the actual value, run the following command on the terminal of the Jetson device:
+
+```
+echo $DISPLAY
+```
+
+Once you have obtained the `DISPLAY` value, open the `deployment-iothub\deployment.template.json` folder on your development machine and update the value for the [`DISPLAY` variable](https://github.com/toolboc/Intelligent-Video-Analytics-with-NVIDIA-Jetson-and-Microsoft-Azure/blob/master/deployment-iothub/deployment.template.json#L93) to match the result obtained by running the previous command on the Jetson Device.  If this value is mismatched, you may see errors in the NVIDIADeepStreamSDK logs which mention an inability to create an EGL sink.  Make sure to save this file if you make modifications.
+
+Next, bring up the Command Pallette again with (CTRL+SHIFT+P), this time search for:
 
 ```
 Azure IoT Hub: Select IoT Hub

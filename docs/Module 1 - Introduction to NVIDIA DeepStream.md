@@ -10,5 +10,4 @@ Before continuing, it is highly suggested to familiarize with the [DeepStream SD
 
 We cover pretty much everything you need to know in this 90 minute livestream titled "[Getting Started with NVIDIA Jetson: Object Detection](https://www.youtube.com/watch?v=yZz-4uOx_Js)".  We highly recommend that you give a watch before proceeding to the next section.
 
-[![Getting Started with NVIDIA Jetson: Object Detection](../assets/LiveStream1.PNG)](
-https://www.twitch.tv/videos/633625822)
+[![Getting Started with NVIDIA Jetson: Object Detection](../assets/LiveStream1.PNG)](https://www.youtube.com/watch?v=yZz-4uOx_Js)
