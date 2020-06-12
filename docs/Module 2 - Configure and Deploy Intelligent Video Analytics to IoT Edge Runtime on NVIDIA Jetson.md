@@ -1,6 +1,6 @@
 ## Module 2 : Configure and Deploy "Intelligent Video Analytics" to IoT Edge Runtime on NVIDIA Jetson
 
-In this section we will install and configure the IoT Edge Runtime on an NVIDIA Jetson Device.  This will require that we deploy a collection of Azure Services to support the modules that are defined in the associated [IoT Edge Deployment for IoT Hub](../deployment-iothub/deployment.template.json).
+In this section we will install and configure the [IoT Edge Runtime](https://docs.microsoft.com/en-us/azure/iot-edge/about-iot-edge?WT.mc_id=julyot-iva-pdecarlo) on an NVIDIA Jetson Device.  This will require that we deploy a collection of Azure Services to support the modules that are defined in the associated [IoT Edge Deployment for IoT Hub](../deployment-iothub/deployment.template.json).
 
 If you take a close look at the deployment, you will notice that it includes the following modules:
 
