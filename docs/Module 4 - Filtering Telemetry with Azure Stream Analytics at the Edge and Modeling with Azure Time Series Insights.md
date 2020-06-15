@@ -65,7 +65,7 @@ Azure Stream Analytics offers a SQL query language for performing transformation
 
 The DeepStreamAnalytics query works by first flattening the DeepStream message output by taking advantage of the [`REGEXMATCH`](https://docs.microsoft.com/en-us/stream-analytics-query/regexmatch-azure-stream-analytics?WT.mc_id=julyot-iva-pdecarlo) function.
 
-Given the following example output from DeepStream:
+Given the following example output from DeepStream where `objects` is formatted as [ *trackingId | bboxleft | bboxtop | bboxwidth | bboxheight | object* ]:
 
 ```
      {
@@ -74,9 +74,9 @@ Given the following example output from DeepStream:
       "@timestamp" : "2020-04-29T10:15:22.439Z",
       "sensorId" : "Yard",
       "objects" : [
-        "290|409|351|544|465|Car",
-        "390|410|351|543|465|Car",
-        "390|410|351|543|465|Person"
+        "1|409|351|544|465|Car",
+        "2|410|351|543|465|Car",
+        "3|480|351|543|465|Person"
       ]
     }
 ```
