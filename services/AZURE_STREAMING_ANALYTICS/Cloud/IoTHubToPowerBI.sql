@@ -1,6 +1,6 @@
 SELECT
     *
 INTO
-    [AcceleratedEdge-StreamAnalytics-Cloud-Output] 
+    [StreamAnalytics-Cloud-Output] 
 FROM
-    [AcceleratedEdge-IoTHub-Input] TIMESTAMP BY [@timestamp]
+    [IoTHub-Input] TIMESTAMP BY [@timestamp]

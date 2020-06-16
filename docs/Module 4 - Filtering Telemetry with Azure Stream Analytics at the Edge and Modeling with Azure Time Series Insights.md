@@ -17,7 +17,7 @@ Select "Create":
 ![Create Azure SAS on Edge](../assets/CreateSASonEdge.PNG)
 
 
-Name the Stream Analytics Job, ensure that it is deployed into the same region as the original IoT Hub,  ensure Hosting environment is set to "Edge", and ensure that the box labeled "Secure all private data assets needed by this job in my Storage account" is unchecked, the select "Create":
+Name the Stream Analytics Job, ensure that it is deployed into the same region as the original IoT Hub,  ensure Hosting environment is set to "Edge", and ensure that the box labeled "Secure all private data assets needed by this job in my Storage account" is unchecked, then select "Create":
 
 ![Deploy Azure SAS on Edge](../assets/DeploySASonEdge.PNG)
 
@@ -55,7 +55,7 @@ Next, select "Upload sample input" then upload the contents of [SampleInput.json
 
 ![Azure SAS on Edge Query Test](../assets/AzureSASonEdgeQueryTest.PNG)
 
-Select "OK", the "Test query" to produce the following result (You may also repeat the last step using [DemoData.json](../services/AZURE_STREAMING_ANALYTICS/Edge/DemoData.json) which contains sample data from an actual test run):
+Select "OK", then "Test query" to produce the following result (You may also repeat the last step using [DemoData.json](../services/AZURE_STREAMING_ANALYTICS/Edge/DemoData.json) which contains sample data from an actual test run):
 
 ![Azure SAS on Edge Query Tested](../assets/AzureSASonEdgeQueryTested.PNG)
 
