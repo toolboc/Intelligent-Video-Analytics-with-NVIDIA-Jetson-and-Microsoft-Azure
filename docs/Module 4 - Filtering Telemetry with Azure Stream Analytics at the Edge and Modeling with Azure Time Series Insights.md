@@ -177,7 +177,7 @@ In this section, we will configure and deploy a Time Series Insights instance in
 
 To get started, navigate to the Azure Marketplace and search for 'Time Series Insights' 
 
-![Azure TSI Marketplace](../assets/TSIMarkeplace.PNG)
+![Azure TSI Marketplace](../assets/TSIMarketplace.PNG)
 
 Select "Create":
 
