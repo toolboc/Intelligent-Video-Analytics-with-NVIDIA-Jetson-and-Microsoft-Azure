@@ -107,7 +107,7 @@ last person by sensorid
 
 For each example, feel free to modify the [object] value, once you have obtained a desirable result, you can pin the visual to your dashboard: 
 
-![PowerBI Pin Visual](../assets/PowerBIPinVisual.PNG)
+![PowerBI Pin Visual](../assets/PowerBIPinViz.PNG)
 
 Repeat this process until you have a desirable result:
 
