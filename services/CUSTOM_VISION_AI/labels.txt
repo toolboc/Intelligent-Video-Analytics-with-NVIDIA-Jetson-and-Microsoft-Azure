@@ -1,4 +1,4 @@
-Car
-Cat
-Dog
-Person
+car
+cat
+dog
+person

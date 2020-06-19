@@ -15,30 +15,30 @@
           "interpolation": null,
           "categories": [
             {
-              "label": "Person",
+              "label": "person",
               "values": [
-                "Person"
+                "person"
               ],
               "annotations": {}
             },
             {
               "label": "Vehicle",
               "values": [
-                "Car"
+                "car"
               ],
               "annotations": {}
             },
             {
-              "label": "Bicycle",
+              "label": "bicycle",
               "values": [
-                "Bicycle"
+                "bicycle"
               ],
               "annotations": {}
             },
             {
-              "label": "Roadsign",
+              "label": "roadsign",
               "values": [
-                "Roadsign"
+                "roadsign"
               ],
               "annotations": {}
             }
@@ -48,13 +48,13 @@
             "annotations": {}
           }
         },
-        "Person": {
+        "person": {
           "kind": "numeric",
           "value": {
             "tsx": "$event.[count].Double"
           },
           "filter": {
-            "tsx": "$event.[object].String='Person'"
+            "tsx": "$event.[object].String='person'"
           },
           "interpolation": null,
           "aggregation": {
@@ -67,7 +67,7 @@
             "tsx": "$event.[count].Double"
           },
           "filter": {
-            "tsx": "$event.[object].String='Car'"
+            "tsx": "$event.[object].String='car'"
           },
           "interpolation": null,
           "aggregation": {
