@@ -10,6 +10,8 @@ This project contains a collection of self-paced learning modules which guide th
 * [Module 4 - Filtering Telemetry with Azure Stream Analytics at the Edge and Modeling with Azure Time Series Insights](./docs/Module%204%20-%20Filtering%20Telemetry%20with%20Azure%20Stream%20Analytics%20at%20the%20Edge%20and%20Modeling%20with%20Azure%20Time%20Series%20Insights.md)
 * [Module 5 - Visualizing Object Detection Data in Near Real-Time with PowerBI](./docs/Module%205%20-%20Visualizing%20Object%20Detection%20Data%20in%20Near%20Real-Time%20with%20PowerBI.md)
 
+Each of these modules is accompanied by a LiveStream which follows through the steps to reproduce in full detail.  
+
 ## Overview
 
 [![5 minute teaser](./assets/5minTeaser.PNG)](

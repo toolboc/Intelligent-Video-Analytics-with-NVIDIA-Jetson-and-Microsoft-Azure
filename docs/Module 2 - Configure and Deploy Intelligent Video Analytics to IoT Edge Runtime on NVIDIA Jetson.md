@@ -249,6 +249,12 @@ Navigate to the Azure Marketplace and search for 'blob', then select Storage Acc
 
 Create the Storage Account using settings similar to below (note: the Storage account name must be globally unique)
 
+![Storage Create](../assets/AzureStorageCreate.PNG)
+
+Select "Review + Create" => "Create" to deploy the new Storage Account Resource.
+
+Navigate to your newly deployed Storage Account and select `Containers`:
+
 ![Storage Overview](../assets/AzureStorageOverview.PNG)
 
 Create a new storage container named "camerataggingmodulecloud" as shown below (the name is important as it matches the value in the .env):
