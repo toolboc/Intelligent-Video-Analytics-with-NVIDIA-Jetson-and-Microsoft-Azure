@@ -237,7 +237,7 @@
         },
         "DeepStreamAnalytics": {
             "properties.desired": {
-                "ASAJobInfo": "https://acceleratededgestore.blob.core.windows.net/acceleratededgestreamanalytics/ASAEdgeJobs/1eaa79ec-5db9-483f-a979-384f1be2e5e0/83c9fc87-f23e-42b7-b1fe-320609cb60ed/ASAEdgeJobDefinition.zip?sv=2018-03-28&sr=b&sig=ciQ7IEaEi8nauouYP9CrP1w0unK10YuMkH32ScLB82s%3D&st=2020-05-09T20%3A24%3A22Z&se=2023-05-09T20%3A34%3A22Z&sp=r"
+                "ASAJobInfo": "https://acceleratededgesasstore.blob.core.windows.net/deepstreamanalytics/ASAEdgeJobs/14ab14a0-b605-429e-ba2e-5bf4ae5b0ba3/e476b018-353d-4fe6-ab10-d05815093e94/ASAEdgeJobDefinition.zip?sv=2018-03-28&sr=b&sig=V5raYdw%2FLPgdUj7MOShYnd91w38G7BHC4FJ7nG8NoGw%3D&st=2020-06-19T22%3A18%3A33Z&se=2023-06-19T22%3A28%3A33Z&sp=r"
             }
         }
     }
