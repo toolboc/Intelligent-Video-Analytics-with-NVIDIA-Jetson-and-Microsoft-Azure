@@ -4,6 +4,11 @@ At this point, you should have deployed a custom DeepStream Configuration that i
 
 This section will assume that you might be brand new to the world of Computer Vision / Artificial Intelligence and that you are interested in the end goal of using a Custom Object Detection model that detects objects that you train it to detect.  If you are interested in obtaining accurate detection of common objects immediately, without the need to train up a custom model, we will also demonstrate how to employ an academic-grade pre-trained object detection model [(YoloV3)](https://pjreddie.com/darknet/yolo/) which has been trained on [80 common objects](../services/YOLOV3/labels.txt).
 
+If you wish to follow along with the steps in this module, we have recorded a livestream presentation titled "[Develop and deploy Custom Object Detection Models with IoT Edge DeepSteam SDK Module](https://www.youtube.com/watch?v=kv0eTobemug)" that walks through the steps below in great detail.
+
+[![Develop and deploy Custom Object Detection Models with IoT Edge DeepSteam SDK Module](../assets/LiveStream3.PNG)](https://www.youtube.com/watch?v=kv0eTobemug)
+
+
 ### Module 3.1 : Training a custom object detection model using Custom Vision AI
 
 *Note: These steps assume that the NVIDIADeepStreamSDK module is configured to reference the `DSConfig-CustomVisionAI.txt` DeepStream configuration*

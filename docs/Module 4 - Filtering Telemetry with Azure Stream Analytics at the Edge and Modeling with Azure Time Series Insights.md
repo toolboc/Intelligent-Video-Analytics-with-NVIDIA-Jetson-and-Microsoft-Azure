@@ -4,6 +4,10 @@ At this point, you should have a working DeepStream Configuration referenced by 
 
 In this module we will explain how to flatten, aggregate, and summarize DeepStream object detection results using [Azure Stream Analytics on Edge](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-edge?WT.mc_id=julyot-iva-pdecarlo) and forward that telemetry to our [Azure IoT Hub](https://docs.microsoft.com/en-us/azure/iot-hub/?WT.mc_id=julyot-iva-pdecarlo). We will then introduce a new Azure Service known as [Time Series Insights](https://docs.microsoft.com/en-us/azure/time-series-insights/?WT.mc_id=julyot-iva-pdecarlo). This service will take in input via an event-source from our IoT Hub to allow us to analyze, query, and detect anomalies within the object detection data produced by our IoT Edge device. 
 
+If you wish to follow along with the steps in this module, we have recorded a livestream presentation titled "[Consuming and Modeling Object Detection Data with Azure Time Series Insights](https://www.youtube.com/watch?v=l5tjaD-qYwY)" that walks through the steps below in great detail.
+
+[![Consuming and Modeling Object Detection Data with Azure Time Series Insights](../assets/LiveStream4.PNG)](https://www.youtube.com/watch?v=l5tjaD-qYwY)
+
 ## Module 4.1 : Recreating the Azure Stream Analytics job in Microsoft Azure
 
 Up to this point, our [deployment template references an Azure Stream Analytics job](https://github.com/toolboc/Intelligent-Video-Analytics-with-NVIDIA-Jetson-and-Microsoft-Azure/blob/master/deployment-iothub/deployment.template.json#L240) that exists in a foreign Azure subscription.  These steps will walk through recreating that job under our own Azure Subscription and provide an in-depth explanation of the functionality that it provides to our solution.  This should provide you with enough knowledge to begin customizing the supplied Stream Analytics Query to your preference.  We will then demonstrate how to update our current configuration to reference the newly created Azure Stream Analytics job.
