@@ -130,13 +130,13 @@
                         },
                         "env": {
                             "RTSP_IP": {
-                                "value": "nvidia:nvidia!@192.168.1.41"
+                              "value": "wowzaec2demo.streamlock.net"
                             },
                             "RTSP_PORT": {
-                                "value": "8081"
+                              "value": "554"
                             },
                             "RTSP_PATH": {
-                                "value": "videoMain"
+                              "value": "vod/mp4:BigBuckBunny_115k.mov"
                             },
                             "REACT_APP_SERVER_PORT": {
                                 "value": "3003"
