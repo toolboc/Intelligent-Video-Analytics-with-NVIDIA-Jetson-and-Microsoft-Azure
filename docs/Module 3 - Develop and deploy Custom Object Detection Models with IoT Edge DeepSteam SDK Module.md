@@ -1,4 +1,4 @@
-## Module 3 : Develop and deploy Custom Object Detection Models with IoT Edge DeepSteam SDK Module
+## Module 3 : Develop and deploy Custom Object Detection Models with IoT Edge DeepStream SDK Module
 
 At this point, you should have deployed a custom DeepStream Configuration that is able to consume input from your desired sources.  We will now look into ways to customize the object detection model that is employed in that configuration to enable to you to create a fully customized Intelligent Video Analytics Pipeline.
 
