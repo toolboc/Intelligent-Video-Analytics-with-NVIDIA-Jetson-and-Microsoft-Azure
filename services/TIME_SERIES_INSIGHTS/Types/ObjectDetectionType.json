@@ -48,7 +48,7 @@
             "annotations": {}
           }
         },
-        "person": {
+        "Person": {
           "kind": "numeric",
           "value": {
             "tsx": "$event.[count].Double"
