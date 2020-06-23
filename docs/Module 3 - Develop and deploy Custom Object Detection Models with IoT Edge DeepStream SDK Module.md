@@ -58,7 +58,7 @@ cd /data/misc/storage/Intelligent-Video-Analytics-with-NVIDIA-Jetson-and-Microso
 
 #Download the exported model from CustomVision.AI
 #Note: It is important that the link to your model is quoted when running this command!
-sudo wget "https://irisscuprodstore.blob.core.windows.net/m-ad5281beaf20440a8f3f046e0e7741af/e3ebcf6e22934c7e89ae39ffe2049a46.ONNX.zip?sv=2017-04-17&sr=b&sig=A%2F9raRar12TSTCvH7D72OxD6mBqvRY5doovtwV4Bjt0%3D&se=2020-04-15T20%3A43%3A26Z&sp=r" -O model.zip
+sudo wget -O model.zip "https://irisscuprodstore.blob.core.windows.net/m-ad5281beaf20440a8f3f046e0e7741af/e3ebcf6e22934c7e89ae39ffe2049a46.ONNX.zip?sv=2017-04-17&sr=b&sig=A%2F9raRar12TSTCvH7D72OxD6mBqvRY5doovtwV4Bjt0%3D&se=2020-04-15T20%3A43%3A26Z&sp=r"
 
 #Unzip the model.zip that we just downloaded
 unzip model.zip
