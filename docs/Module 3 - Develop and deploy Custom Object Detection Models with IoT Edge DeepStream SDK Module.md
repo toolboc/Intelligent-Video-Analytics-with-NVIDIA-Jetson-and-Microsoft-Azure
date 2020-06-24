@@ -225,6 +225,8 @@ By default, the YOLOV3 configuration expects the engine to be named `yolov3_mode
 
 If DeepStream is able to reference an existing engine, (see [config_infer_primary_yoloV3.txt](https://github.com/toolboc/Intelligent-Video-Analytics-with-NVIDIA-Jetson-and-Microsoft-Azure/blob/master/services/DEEPSTREAM/configs/config_infer_primary_yoloV3.txt#L67) for YoloV3 or [config_infer_primary_yoloV3_tiny.txt](https://github.com/toolboc/Intelligent-Video-Analytics-with-NVIDIA-Jetson-and-Microsoft-Azure/blob/master/services/DEEPSTREAM/configs/config_infer_primary_yoloV3_tiny.txt#L66) for YoloV3Tiny), it will not need to re-build the TensorRT engine on subsequent executions which can vastly speed up the start time of your DeepStream workload.  
 
+If you notice low framerates or laggy performance, particularly when running YoloV3* inference with multiple video sources on a Jetson Nano. You may be able to improve performance by increasing the value of `[primary-gie]` `interval` in your DeepStream configuration.  This will set the number of consecutive frame batches to skip before performing inference execution,  improving the ability to process inference results closer to real-time by running inference less often.
+
 ### Module 3.6: Next Steps
 
 You should now have a working DeepStream Configuration that references a CustomVision.AI model or YoloV3*.  We are now ready to begin pushing object detection telemetry from our custom Intelligent Video Analytics solution into Microsoft Azure Services.  
