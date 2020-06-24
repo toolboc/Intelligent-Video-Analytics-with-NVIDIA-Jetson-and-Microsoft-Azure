@@ -22,7 +22,7 @@
               "annotations": {}
             },
             {
-              "label": "Vehicle",
+              "label": "vehicle",
               "values": [
                 "car"
               ],
