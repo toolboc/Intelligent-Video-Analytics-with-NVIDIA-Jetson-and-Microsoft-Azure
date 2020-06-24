@@ -98,11 +98,11 @@ Notice that there is now a section to "Ask a question about your data":
 
 Try some of these examples:
 ```
-Max of count Person in last minute by sensor id
-show count person and event processed utc times by sensorid over time
-MAX of count car in sensorId in last minute
-AVG count of car in Street  in last minute
-last person by sensorid
+Max of count person in last minute by sensor id
+MAX of count car in yard in last minute  
+AVG count of car in Street in last minute    
+LAST person by sensorid
+Pie Chart count of person by sensorid in last day (@timestamp)
 ```
 
 For each example, feel free to modify the [object] value, once you have obtained a desirable result, you can pin the visual to your dashboard: 
