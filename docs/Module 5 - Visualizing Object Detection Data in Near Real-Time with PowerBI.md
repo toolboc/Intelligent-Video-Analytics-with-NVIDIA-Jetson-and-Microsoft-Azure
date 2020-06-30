@@ -8,6 +8,16 @@ In order to complete this module, it will require that you have an active PowerB
 
 ## Module 5.1 : Forwarding telemetry from IoT Hub to PowerBI using a Cloud-Based Azure Stream Analytics Job
 
+Before attempting these steps, ensure that your NVIDIA Jetson device is sending live data to the associated Azure IoT Hub.  You can do this withing Visual Studio Code by expanding the Azure IoT Hub Extension (which should be configured to the associated IoT Hub) then select "Devices", select the current device then right-click it and choose "Start Monitoring Built-in Event Endpoint":
+
+![Monitor Built-in Event Endpoint VSCode](../assets/MonitorEndpoint.PNG)
+
+After about 15 seconds, you should begin seeing data in the `OUTPUT` window:
+
+![Monitor Built-in Event Endpoint VSCode Output](../assets/MonitorEndpointOutput.PNG)
+
+Once you have confirmed that data is flowing, we can now create the backend services that will be used to ingest this live data.
+
 [Azure Stream Analytics enables you to take advantage of one of the leading business intelligence tools](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-power-bi-dashboard?WT.mc_id=julyot-iva-pdecarlo), Microsoft [Power BI](https://docs.microsoft.com/en-us/power-bi/fundamentals/power-bi-overview?WT.mc_id=julyot-iva-pdecarlo). In this section, you will learn how to configure Power BI as an output from a Azure Stream Analytics job that forwards data arriving into our IoT Hub.
 
 To begin, we will create a PowerBI workspace to publish our dataset and reports to. Navigate to powerbi.microsoft.com and log in.  Next, select the "Workspace" icon then "Create a workplace":
