@@ -10,12 +10,13 @@ This project contains a collection of self-paced learning modules which guide th
 * [Module 4 - Filtering Telemetry with Azure Stream Analytics at the Edge and Modeling with Azure Time Series Insights](./docs/Module%204%20-%20Filtering%20Telemetry%20with%20Azure%20Stream%20Analytics%20at%20the%20Edge%20and%20Modeling%20with%20Azure%20Time%20Series%20Insights.md)
 * [Module 5 - Visualizing Object Detection Data in Near Real-Time with PowerBI](./docs/Module%205%20-%20Visualizing%20Object%20Detection%20Data%20in%20Near%20Real-Time%20with%20PowerBI.md)
 
-Each of these modules is accompanied by a LiveStream which follows through the steps to reproduce in full detail.  
+Each of these modules is accompanied by a LiveStream that walks through the steps to reproduce in full detail.  You can watch a build out of the entire project from the ground up by checking out the following [5-part video playlist](https://www.youtube.com/playlist?list=PLzgEG9tLG-1QLc-DPPABoW1YWFMPNQl4t) on Youtube.
+
+[![5 part video playlist](./assets/Playlist.PNG)](https://www.youtube.com/playlist?list=PLzgEG9tLG-1QLc-DPPABoW1YWFMPNQl4t)
 
 ## Overview
 
-[![5 minute teaser](./assets/5minTeaser.PNG)](
-https://www.youtube.com/watch?v=-DWrxUITSbc)
+[![5 minute teaser](./assets/5minTeaser.PNG)](https://www.youtube.com/watch?v=-DWrxUITSbc)
 
 
 The project makes use of the [NVIDIA DeepStream SDK](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/nvidia.deepstream-iot?tab=Overview&WT.mc_id=julyot-iva-pdecarlo) running on [NVIDIA Jetson Embedded hardware](https://www.nvidia.com/en-us/autonomous-machines/jetson-store/) to produce an Intelligent Video Analytics Pipeline. 
@@ -53,3 +54,12 @@ Development Environment:
 
 Cloud Services:
 - An Active [Microsoft Azure Subscription](https://azure.microsoft.com/en-us/get-started?WT.mc_id=julyot-iva-pdecarlo)
+
+## Learn more, get certified
+
+If you are interested in learning more about building solutions with Azure IoT Services, check out the following free learning resources:
+
+* [IoT learning paths on Microsoft Learn](https://docs.microsoft.com/learn/browse/?term=IOT&WT.mc_id=julyot-iva-pdecarlo)
+* [The IoT show on Channel9](https://channel9.msdn.com/Shows/Internet-of-Things-Show/?WT.mc_id=julyot-iva-pdecarlo)
+
+Once you have upskilled as an IoT developer, make it official with the [AZ-220 Azure IoT Developer certification](https://docs.microsoft.com/learn/certifications/azure-iot-developer-specialty?WT.mc_id=julyot-iva-pdecarlo).

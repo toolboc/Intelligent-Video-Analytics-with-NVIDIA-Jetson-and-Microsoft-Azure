@@ -6,6 +6,10 @@ In this module, we will cover how to forward object detection telemetry from our
 
 In order to complete this module, it will require that you have an active PowerBI account.  If you need to create one, this [video](https://channel9.msdn.com/Blogs/BretStateham/Signing-up-for-Power-BI) walks through the process.
 
+If you wish to follow along with the steps in this module, we have recorded a livestream presentation titled "[Visualizing Object Detection Data in Near Real-Time with PowerBI](https://www.youtube.com/watch?v=lhvPbNF9eb4)" that walks through the steps below in great detail.
+
+[![Visualizing Object Detection Data in Near Real-Time with PowerBI](../assets/LiveStream5.PNG)](https://www.youtube.com/watch?v=lhvPbNF9eb4)
+
 ## Module 5.1 : Forwarding telemetry from IoT Hub to PowerBI using a Cloud-Based Azure Stream Analytics Job
 
 Before attempting these steps, ensure that your NVIDIA Jetson device is sending live data to the associated Azure IoT Hub.  You can do this withing Visual Studio Code by expanding the Azure IoT Hub Extension (which should be configured to the associated IoT Hub) then select "Devices", select the current device then right-click it and choose "Start Monitoring Built-in Event Endpoint":
