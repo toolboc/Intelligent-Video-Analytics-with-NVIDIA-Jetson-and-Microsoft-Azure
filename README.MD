@@ -37,7 +37,7 @@ https://www.youtube.com/watch?v=EiB1j0FZjgU)
 ## Prerequisites
 
 Hardware:
-* [NVIDIA Jetson Embedded Device](https://www.nvidia.com/en-us/autonomous-machines/jetson-store/) running [JetPack 4.4](https://developer.nvidia.com/embedded/jetpack)
+* [NVIDIA Jetson Embedded Device](https://www.nvidia.com/en-us/autonomous-machines/jetson-store/) running [JetPack 4.4 Developer Preview](https://developer.nvidia.com/jetpack-sdk-44-dp-archive)
 * A [cooling fan](https://amzn.to/2ZI2ki9) installed on or pointed at the Nvidia Jetson Nano device 
 * RTSP Capable Camera (Optional)
   - Note: We recommend the [FI9821P from Foscam](https://amzn.to/2XzBRFC) 
