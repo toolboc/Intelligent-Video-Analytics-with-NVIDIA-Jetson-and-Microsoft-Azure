@@ -63,7 +63,7 @@
                         "status": "running",
                         "restartPolicy": "always",
                         "settings": {
-                            "image": "nvcr.io/nvidia/deepstream-l4t:5.0-dp-20.04-iot",
+                            "image": "nvcr.io/nvidia/deepstream-l4t:5.0-20.07-iot",
                             "createOptions": {
                                 "Entrypoint": [
                                     "/usr/bin/deepstream-test5-app",
