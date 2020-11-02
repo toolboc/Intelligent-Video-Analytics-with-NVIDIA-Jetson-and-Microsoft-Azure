@@ -9,7 +9,7 @@ FlattenedDetections AS
         [DeepStreamInput] AS DeepStreamInput TIMESTAMP BY DeepStreamInput.[@timestamp] 
         CROSS APPLY GetArrayElements(objects) AS arrayElement 
     WHERE
-       DeepStreamInput.[@timestamp] != CAST('1970-01-01T00:00:00.000Z' AS datetime) /*filter RTSP disconnections*/
+       DeepStreamInput.[@timestamp]  != '1970-01-01T00:00:00.000Z' /*filter RTSP disconnections*/
        GROUP BY DeepStreamInput.[sensorId], 
                 arrayElement, 
                 DeepStreamInput.[@timestamp],
