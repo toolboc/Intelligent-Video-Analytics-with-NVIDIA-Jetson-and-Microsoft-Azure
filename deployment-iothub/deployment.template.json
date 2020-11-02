@@ -191,7 +191,7 @@
                         "status": "running",
                         "restartPolicy": "always",
                         "settings": {
-                            "image": "mcr.microsoft.com/azure-stream-analytics/azureiotedge:1.0.6-linux-arm32v7",
+                            "image": "mcr.microsoft.com/azure-stream-analytics/azureiotedge:1.0.9-linux-arm32v7",
                             "createOptions": {}
                         },
                         "env": {
@@ -237,7 +237,7 @@
         },
         "DeepStreamAnalytics": {
             "properties.desired": {
-                "ASAJobInfo": "https://acceleratededgesasstore.blob.core.windows.net/deepstreamanalytics/ASAEdgeJobs/14ab14a0-b605-429e-ba2e-5bf4ae5b0ba3/e476b018-353d-4fe6-ab10-d05815093e94/ASAEdgeJobDefinition.zip?sv=2018-03-28&sr=b&sig=V5raYdw%2FLPgdUj7MOShYnd91w38G7BHC4FJ7nG8NoGw%3D&st=2020-06-19T22%3A18%3A33Z&se=2023-06-19T22%3A28%3A33Z&sp=r"
+                "ASAJobInfo": "https://acceleratededgesasstore.blob.core.windows.net/deepstreamanalytics/ASAEdgeJobs/585778d0-7865-474f-b97b-19b5d3959d2d/4a34bf79-efe2-4255-b858-473058e4c533/ASAEdgeJobDefinition.zip?sv=2018-03-28&sr=b&sig=k%2B6z4JklD1KUpggFQJlFLaFFCOGP4DxUH%2Ff5H77JCBc%3D&st=2020-11-02T15%3A00%3A47Z&se=2023-11-02T15%3A10%3A47Z&sp=r"
             }
         }
     }
