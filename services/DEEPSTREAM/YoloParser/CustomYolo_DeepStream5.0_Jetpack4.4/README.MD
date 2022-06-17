@@ -1,6 +1,6 @@
 ## Instructions to build the DeepStream YoloParser from source
 1. Ensure that you have installed the DeepStream5.0 sources included in the [DeepStream Installer](https://developer.nvidia.com/deepstream-getting-started)
-2. Navigate to the with:
+2. Navigate to the following directory with:
     ```
     cd /opt/nvidia/deepstream/deepstream-5.0/sources/objectDetector_Yolo/nvdsinfer_custom_impl_Yolo
     ```
@@ -8,7 +8,7 @@
     ``` 
     make CUDA_VER=10.2 clean 
     ```
-4. Build from source wtih:
+4. Build from source with:
     ``` 
     make CUDA_VER=10.2 
     ```
