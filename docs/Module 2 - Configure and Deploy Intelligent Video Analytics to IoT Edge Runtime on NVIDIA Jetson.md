@@ -41,48 +41,17 @@ ARM64 builds of IoT Edge that are compatible with NVIDIA Jetson Hardware are pro
 # paste in terminal. The comment lines will be ignored.
 
 # Install the IoT Edge repository configuration
-curl https://packages.microsoft.com/config/ubuntu/18.04/multiarch/prod.list > ./microsoft-prod.list
+wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb
 
-# Copy the generated list
-sudo cp ./microsoft-prod.list /etc/apt/sources.list.d/
-
-# Install the Microsoft GPG public key
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-sudo cp ./microsoft.gpg /etc/apt/trusted.gpg.d/
 
 # Perform apt update
 sudo apt-get update
 
 # Install IoT Edge and the Security Daemon
-sudo apt-get install iotedge
+sudo apt-get install aziot-edge defender-iot-micro-agent-edge
 
-```
-
-After installation, you will receive the following message indicating the need to update the device's configuration, we'll address this in the next step:
-
-```
-===============================================================================
-
-                              Azure IoT Edge
-
-  IMPORTANT: Please update the configuration file located at:
-
-    /etc/iotedge/config.yaml
-
-  with your device's provisioning information. You will need to restart the
-  'iotedge' service for these changes to take effect.
-
-  To restart the 'iotedge' service, use:
-
-    'systemctl restart iotedge'
-
-    - OR -
-
-    /etc/init.d/iotedge restart
-
-  These commands may need to be run with sudo depending on your environment.
-
-===============================================================================
 ```
 
 ### Module 2.2 : Provision the IoT Edge Runtime on the Jetson Device
@@ -91,70 +60,48 @@ In this section, we will manually provision our Jetson hardware as an IoT Edge d
 
 You can create a new IoT Hub, register an IoT Edge device, and obtain the device connection string needed to accomplish this by following the documentation for [Registering an IoT Edge device in the Azure Portal](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-register-device-portal?WT.mc_id=julyot-iva-pdecarlo) or by [Registering an IoT Edge device with the Azure-CLI](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-register-device-cli?WT.mc_id=julyot-iva-pdecarlo).
 
-Once you have obtained a connection string, open the IoT Edge device configuration file:
+You can quickly configure your IoT Edge device with symmetric key authentication using the following command:
 
 ```
-sudo nano /etc/iotedge/config.yaml
+sudo iotedge config mp --connection-string 'PASTE_DEVICE_CONNECTION_STRING_HERE'
 ```
 
-Find the provisioning section of the file and uncomment the manual provisioning mode. Update the value of `device_connection_string` with the connection string from your IoT Edge device.
+The iotedge config mp command creates a configuration file on the device and enters your connection string in the file.
+
+Apply the configuration changes.
 
 ```
-provisioning:
-  source: "manual"
-  device_connection_string: "<ADD DEVICE CONNECTION STRING HERE>"
-  
-# provisioning: 
-#   source: "dps"
-#   global_endpoint: "https://global.azure-devices-provisioning.net"
-#   scope_id: "{scope_id}"
-#   registration_id: "{registration_id}"
+sudo iotedge config apply
 
 ```
 
-After you have updated the value of `device_connection_string`, restart the iotedge service with:
+If you want to see the configuration file, you can open it:
 
 ```
-sudo service iotedge restart
+sudo nano /etc/aziot/config.toml
 ```
 
-You can check the status of the IoT Edge Daemon using:
+Check to see that the IoT Edge system service is running.
 
 ```
-systemctl status iotedge
+sudo iotedge system status
 ```
 
-Examine daemon logs using:
-```
-journalctl -u iotedge --no-pager --no-full
-```
+A successful status response is Ok.
 
-And, list running modules with:
+If you need to troubleshoot the service, retrieve the service logs.
 
 ```
-sudo iotedge list
+sudo iotedge system logs
 ```
 
-To ensure that the IoT Edge Runtime is configured and running:
+Use the check tool to verify configuration and connection status of the device.
 
 ```
-sudo service iotedge status
+sudo iotedge check
 ```
 
-A successfully configured device should report output similar to the following, if there are any errors, double-check the configuration has been set appropriately:
-
-```
-● iotedge.service - Azure IoT Edge daemon
-   Loaded: loaded (/lib/systemd/system/iotedge.service; enabled; vendor preset: enabled)
-   Active: active (running) since Mon 2020-06-08 13:04:44 CDT; 15s ago
-     Docs: man:iotedged(8)
- Main PID: 9029 (iotedged)
-    Tasks: 11 (limit: 4183)
-   CGroup: /system.slice/iotedge.service
-           └─9029 /usr/bin/iotedged -c /etc/iotedge/config.yaml
-```
-
-The IoT Edge runtime will begin pulling down the edgeAgent and edgeHub system modules.  These modules will run by default until we supply a deployment configuration containing additional modules.
+Once configured successfully, the IoT Edge runtime will begin pulling down the edgeAgent and edgeHub system modules.  These modules will run by default until we supply a deployment configuration containing additional modules.
 
 ### Module 2.3 : Prepare the Jetson Device to use the "Intelligent Video Analytics" sample configurations
 

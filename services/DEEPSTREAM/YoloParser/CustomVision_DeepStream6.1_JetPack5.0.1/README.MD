@@ -1,4 +1,5 @@
 ## Instructions to build the CustomVision DeepStream YoloParser from source
+1. Ensure that you have installed the DeepStream 6.1 sources included in the [DeepStream Installer](https://developer.nvidia.com/deepstream-getting-started)
 1. Clean the build environment with:
     ``` 
     make CUDA_VER=11.4 clean 

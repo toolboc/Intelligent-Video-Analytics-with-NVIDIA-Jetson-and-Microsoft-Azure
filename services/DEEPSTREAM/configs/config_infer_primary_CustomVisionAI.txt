@@ -76,4 +76,4 @@ is-classifier=0
 maintain-aspect-ratio=1
 #output-blob-names=output-blob-names=coverage;bbox
 parse-bbox-func-name=NvDsInferParseCustomYoloV2Tiny
-custom-lib-path=../YoloParser/CustomVision_DeepStream6.1_JetPack5.0.1/libnvdsinfer_custom_impl_Yolo.so
+custom-lib-path=../YoloParser/CustomVision_DeepStream6.1.1_JetPack5.0.2/libnvdsinfer_custom_impl_Yolo.so
